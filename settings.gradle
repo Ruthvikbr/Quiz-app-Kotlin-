@@ -1,0 +1,2 @@
+rootProject.name='quizApp-kotlin'
+include ':app'
