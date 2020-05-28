@@ -1,7 +1,8 @@
-package com.ruthvikbr.quizapp_kotlin
+package com.ruthvikbr.quizapp_kotlin.tasklist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ruthvikbr.quizapp_kotlin.R
 
 class MainActivity : AppCompatActivity() {
 
