@@ -12,11 +12,11 @@ import java.util.concurrent.Executors
 @Database(entities = [State::class],version = 1,exportSchema = false)
 abstract class StateDatabase:RoomDatabase() {
 
-    val executor:ExecutorService = Executors.newSingleThreadExecutor()
+
     abstract val stateDao:StateDao
 
     companion object{
-
+        val executor:ExecutorService = Executors.newSingleThreadExecutor()
         @Volatile
         private var INSTANCE:StateDatabase ?= null
 
@@ -32,8 +32,9 @@ abstract class StateDatabase:RoomDatabase() {
                     ).addCallback(object :RoomDatabase.Callback(){
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-
-
+                            executor.execute {
+                                //json parsing here
+                            }
                         }
                     }).fallbackToDestructiveMigration().build()
                     INSTANCE = instance
