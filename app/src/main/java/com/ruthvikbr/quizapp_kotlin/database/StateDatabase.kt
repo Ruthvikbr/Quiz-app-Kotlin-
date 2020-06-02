@@ -12,7 +12,6 @@ import java.util.concurrent.Executors
 @Database(entities = [State::class],version = 1,exportSchema = false)
 abstract class StateDatabase:RoomDatabase() {
 
-
     abstract val stateDao:StateDao
 
     companion object{
@@ -43,5 +42,7 @@ abstract class StateDatabase:RoomDatabase() {
             }
 
         }
+
+
     }
 }
