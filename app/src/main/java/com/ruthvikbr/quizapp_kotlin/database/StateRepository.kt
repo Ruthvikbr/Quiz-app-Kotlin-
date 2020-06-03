@@ -7,7 +7,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.ruthvikbr.quizapp_kotlin.data.State
 
-class StateRepository(private val application: Application ) {
+class StateRepository(application: Application ) {
     private val stateDao:StateDao
 
     init {
