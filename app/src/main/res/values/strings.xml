@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">quizApp-kotlin</string>
+    <string name="list">list</string>
 </resources>

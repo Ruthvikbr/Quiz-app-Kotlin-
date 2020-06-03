@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".tasklist.MainActivity">
+        <activity android:name=".ui.addState.AddStateActivity"></activity>
+        <activity android:name=".ui.StateList.listActivity" />
+        <activity android:name=".ui.quiz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
