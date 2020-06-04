@@ -1,4 +1,4 @@
-package com.ruthvikbr.quizapp_kotlin.ui.StateList
+package com.ruthvikbr.quizapp_kotlin.ui.stateList
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
