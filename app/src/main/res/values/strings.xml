@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">quizApp-kotlin</string>
     <string name="list">list</string>
+    <string name="state_name">State</string>
+    <string name="capital">Capital</string>
+    <string name="submit">Submit</string>
 </resources>
