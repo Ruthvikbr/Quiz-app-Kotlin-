@@ -33,7 +33,7 @@ class StateRepository(application: Application ) {
         stateDao.insertState(state)
     }
 
-     fun deletState( state:State){
+     fun deleteState( state:State){
         stateDao.deleteState(state)
     }
      fun updateState( state:State){
