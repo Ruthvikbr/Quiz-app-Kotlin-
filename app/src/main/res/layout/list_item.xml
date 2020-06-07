@@ -2,8 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="10dp"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
@@ -13,18 +14,18 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
         tools:text="SampleState"
-        tools:textColor="#000000"
-        tools:textSize="24sp" />
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/capitalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_medium"
         android:textStyle="italic"
         tools:text="SampleCapital"
-        tools:textColor="#423B3B"
-        tools:textSize="18sp" />
+        android:textColor="#423B3B"
+        android:textSize="12sp" />
 
 </LinearLayout>

@@ -8,16 +8,16 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "State")
-data class State (
+data class State(
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "StateID")
-    var StateID:Int,
 
     @ColumnInfo(name = "stateName")
-    var stateName:String,
+    var stateName: String,
 
     @ColumnInfo(name = "capitalName")
-    var capitalName:String
+    var capitalName: String,
+    @PrimaryKey(autoGenerate = true)
+    var StateID: Int = 0
 
-):Parcelable
+) : Parcelable
+
