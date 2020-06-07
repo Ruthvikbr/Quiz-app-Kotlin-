@@ -6,9 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.ruthvikbr.quizapp_kotlin.data.State
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class StateRepository(application: Application ) {
     private val stateDao:StateDao
+    private val executor:ExecutorService = Executors.newSingleThreadExecutor()
 
     init {
         val stateDatabase = StateDatabase.getInstance(application)
@@ -30,14 +33,21 @@ class StateRepository(application: Application ) {
     }
 
      fun insertState( state:State){
-        stateDao.insertState(state)
+        executor.execute {
+            stateDao.insertState(state)
+        }
+
     }
 
      fun deleteState( state:State){
-        stateDao.deleteState(state)
+         executor.execute {
+             stateDao.deleteState(state)
+         }
     }
      fun updateState( state:State){
-        stateDao.updateState(state)
+         executor.execute {
+             stateDao.updateState(state)
+         }
     }
 
     fun getAllStates():LiveData<PagedList<State>>{

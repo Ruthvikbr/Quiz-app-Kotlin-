@@ -8,7 +8,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import com.ruthvikbr.quizapp_kotlin.R
-import com.ruthvikbr.quizapp_kotlin.ui.stateList.listActivity
+import com.ruthvikbr.quizapp_kotlin.ui.stateList.ListActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.list -> {
-                val intent = Intent(this, listActivity::class.java)
+                val intent = Intent(this, ListActivity::class.java)
                 startActivity(intent)
                 true
             }
