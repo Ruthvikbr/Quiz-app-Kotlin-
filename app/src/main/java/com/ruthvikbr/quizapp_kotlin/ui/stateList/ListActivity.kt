@@ -10,9 +10,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ruthvikbr.quizapp_kotlin.R
 import com.ruthvikbr.quizapp_kotlin.ui.addState.AddStateActivity
 
+
 class ListActivity : AppCompatActivity() {
 
-     private lateinit var viewModel:ListViewModel
+    private lateinit var viewModel:ListViewModel
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +26,20 @@ class ListActivity : AppCompatActivity() {
             val intent = Intent(this,AddStateActivity::class.java)
             startActivity(intent)
         }
+
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+
         val recyclerView:RecyclerView = findViewById(R.id.stateList)
+
         val listPagingAdapter = ListPagingAdapter()
         recyclerView.adapter = listPagingAdapter
+
         viewModel.stateList.observe(this, Observer {
             listPagingAdapter.submitList(it)
         })
+
+
+
 
 
     }
