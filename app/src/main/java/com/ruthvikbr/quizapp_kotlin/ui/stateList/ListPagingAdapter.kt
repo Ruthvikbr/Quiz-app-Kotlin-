@@ -41,7 +41,6 @@ class ListPagingAdapter : PagedListAdapter<State, ListViewHolder>(DIFF_CALLBACK)
     interface ClickListener{
         fun onItemClick(view:View, position: Int)
     }
-
     fun getStateAtPosition(position: Int): State? {
         return getItem(position)
     }

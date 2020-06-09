@@ -19,7 +19,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application){
 
     fun deleteState(state: State) = stateRepository.deleteState(state)
 
-    fun updateState(state: State) = stateRepository.updateState(state)
+
 
 
 }

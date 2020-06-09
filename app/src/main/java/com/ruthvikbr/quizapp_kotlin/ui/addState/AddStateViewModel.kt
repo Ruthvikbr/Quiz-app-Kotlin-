@@ -2,8 +2,6 @@ package com.ruthvikbr.quizapp_kotlin.ui.addState
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.paging.PagedList
 import com.ruthvikbr.quizapp_kotlin.data.State
 import com.ruthvikbr.quizapp_kotlin.database.StateRepository
 
