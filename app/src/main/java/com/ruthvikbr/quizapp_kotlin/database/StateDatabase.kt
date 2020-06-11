@@ -57,32 +57,17 @@ abstract class StateDatabase:RoomDatabase() {
 
 
     fun populateDB(assetManager: AssetManager, stateDB: StateDatabase) {
-        var bufferedReader: BufferedReader? = null
-        val stringBuilder = StringBuilder()
-        var json = " "
-        val stateDao:StateDao = stateDB.stateDao
+        var jsonString: String ? = null
         try {
-            bufferedReader =
-                BufferedReader(InputStreamReader(assetManager.open("states.json")))
-            var mLine: String
-            while (bufferedReader.readLine() != null) {
-                mLine = bufferedReader.readLine()
-                stringBuilder.append(mLine)
-            }
-            json = stringBuilder.toString()
-
-        } catch (e: IOException) {
-            Log.v("Reading error"," "+e.stackTrace)
-        } finally {
-            try {
-                bufferedReader?.close()
-            } catch (e: IOException) {
-                Log.v("Closing error"," "+e.stackTrace)
-            }
+            jsonString = assetManager.open("state-capital.json").bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
         }
 
+        val stateDao:StateDao = stateDB.stateDao
         try {
-            val states = JSONObject(json)
+            val states = JSONObject(jsonString)
+            Log.v("Json response",""+jsonString)
             val section: JSONObject = states.getJSONObject("sections")
             parseJSON(section.getJSONArray("States (A-L)"), stateDao)
             parseJSON(section.getJSONArray("States (M-Z)"), stateDao)
