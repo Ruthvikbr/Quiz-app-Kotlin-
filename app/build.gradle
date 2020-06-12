@@ -49,4 +49,9 @@ dependencies {
     //Paging library
     def paging_version = "2.1.2"
     implementation "androidx.paging:paging-runtime:$paging_version"
+
+    //Paging library
+    def coroutine_version = "1.0.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 }

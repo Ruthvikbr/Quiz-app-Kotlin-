@@ -5,7 +5,6 @@ import androidx.room.*
 import com.ruthvikbr.quizapp_kotlin.data.State
 
 
-
 @Dao
 interface StateDao {
 
@@ -19,6 +18,8 @@ interface StateDao {
     fun deleteState(state: State)
 
     @Query("SELECT * FROM State")
-    fun getAllStates() : DataSource.Factory<Int,State>
+    fun getAllStates(): DataSource.Factory<Int, State>
 
+    @Query("SELECT * FROM State ORDER BY RANDOM() LIMIT 4")
+    fun getQuizStates(): List<State>
 }

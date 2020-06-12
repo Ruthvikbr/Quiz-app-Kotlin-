@@ -11,10 +11,7 @@ import com.ruthvikbr.quizapp_kotlin.data.State
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
-import java.lang.StringBuilder
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -66,7 +63,7 @@ abstract class StateDatabase:RoomDatabase() {
 
         val stateDao:StateDao = stateDB.stateDao
         try {
-            val states = JSONObject(jsonString)
+            val states = JSONObject(jsonString!!)
             Log.v("Json response",""+jsonString)
             val section: JSONObject = states.getJSONObject("sections")
             parseJSON(section.getJSONArray("States (A-L)"), stateDao)
@@ -75,7 +72,7 @@ abstract class StateDatabase:RoomDatabase() {
 
 
         } catch (e: JSONException) {
-            Log.v("Calling error"," "+e)
+            e.stackTrace
         }
 
     }
