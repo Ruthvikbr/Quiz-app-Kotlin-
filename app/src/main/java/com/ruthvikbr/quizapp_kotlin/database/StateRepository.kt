@@ -68,7 +68,7 @@ class StateRepository(application: Application) {
         repositoryJob.cancel()
     }
 
-    private fun getQuizStates() : List<State>? {
+     fun getQuizStates() : List<State>? {
 
         uiScope.launch {
             states = getQuizStatesFromDatabase()
