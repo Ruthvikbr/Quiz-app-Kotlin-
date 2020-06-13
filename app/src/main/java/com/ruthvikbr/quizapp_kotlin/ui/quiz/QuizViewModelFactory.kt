@@ -5,10 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 
-class QuizViewModelFactory(application: Application) : ViewModelProvider.AndroidViewModelFactory(application) {
+class QuizViewModelFactory(private var application: Application) : ViewModelProvider.AndroidViewModelFactory(application) {
+
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return super.create(modelClass)
+        if (modelClass.isAssignableFrom(QuizViewModel::class.java)) {
+            return QuizViewModel(application) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 
 }
