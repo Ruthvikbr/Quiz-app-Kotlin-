@@ -17,7 +17,7 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun loadGame() {
         try {
-            states.postValue(stateRepository.getQuizStates())
+            states.postValue(stateRepository.getQuizStates()?.get())
         } catch (e: InterruptedException) {
             e.printStackTrace()
         } catch (e: ExecutionException) {
@@ -29,5 +29,7 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
      fun refreshGame(){
         loadGame()
     }
+
+
 
 }

@@ -2,23 +2,21 @@ package com.ruthvikbr.quizapp_kotlin.database
 
 
 import android.app.Application
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.ruthvikbr.quizapp_kotlin.data.State
 import kotlinx.coroutines.*
+import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.concurrent.Future
 
 class StateRepository(application: Application) {
     private val stateDao: StateDao
     private val executor: ExecutorService = Executors.newSingleThreadExecutor()
 
-    private val repositoryJob = Job()
-
-    private val uiScope = CoroutineScope(Dispatchers.Main + repositoryJob)
-
-    private lateinit var states : List<State>
 
     init {
         val stateDatabase = StateDatabase.getInstance(application)
@@ -63,23 +61,16 @@ class StateRepository(application: Application) {
         return LivePagedListBuilder(stateDao.getAllStates(), pageSize).build()
     }
 
-    //For cancelling coroutines in viewModel's onCleared method
-    fun cancelJob(){
-        repositoryJob.cancel()
+    fun getQuizStates(): Future<List<State>>?{
+        val callable:Callable<List<State>> = Callable {
+            return@Callable stateDao.getQuizStates()
+        }
+        return executor.submit(callable)
     }
 
-     fun getQuizStates() : List<State>? {
-
-        uiScope.launch {
-            states = getQuizStatesFromDatabase()
-        }
-        return states
-    }
-
-    private suspend fun getQuizStatesFromDatabase(): List<State> {
-        return withContext(Dispatchers.IO){
-            stateDao.getQuizStates()
-        }
+    @WorkerThread
+    fun getRandomState():State{
+        return stateDao.getRandomState()
     }
 
 

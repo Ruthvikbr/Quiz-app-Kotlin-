@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.quiz.MainActivity">
+    tools:context=".ui.settings.SettingsActivity">
 
-    <com.ruthvikbr.quizapp_kotlin.ui.quiz.QuizView
-        android:id="@+id/quizView"
-        android:layout_width="322dp"
-        android:layout_height="211dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.ruthvikbr.quizapp_kotlin.ui.settings.Settings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

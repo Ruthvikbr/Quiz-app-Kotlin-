@@ -10,28 +10,24 @@ import android.widget.TextView
 import com.ruthvikbr.quizapp_kotlin.data.State
 import kotlin.random.Random
 
-class QuizView(context: Context) : LinearLayout(context) {
+class QuizView(context: Context, attributeSet: AttributeSet) : LinearLayout(context, attributeSet) {
 
     private lateinit var options: RadioGroup
 
-    var correctOptionID: Int? = null
+    private var correctOptionID: Int? = null
 
     private lateinit var optionsClickListener: OptionsClickListener
+
 
     init {
         initRadios()
     }
 
-    constructor(context: Context, attributeSet: AttributeSet) : this(context) {
-        initRadios()
-    }
-
-
     fun setOnOptionsClickListener(optionsClickListener: OptionsClickListener) {
         this.optionsClickListener = optionsClickListener
     }
 
-    public interface OptionsClickListener {
+    interface OptionsClickListener {
         fun onClicked(result: Boolean)
     }
 
@@ -40,10 +36,11 @@ class QuizView(context: Context) : LinearLayout(context) {
         options.id = View.generateViewId()
     }
 
-    public fun setData(states: List<State>) {
-        val random = Random(System.currentTimeMillis())
-        val correctOption: Int = random.nextInt(4)
+    fun setData(states: List<State>) {
 
+        val random = Random(System.currentTimeMillis())
+
+        val correctOption: Int = random.nextInt(4)
         val correctState = states[correctOption]
 
         val questionTextView = TextView(context)
@@ -85,7 +82,7 @@ class QuizView(context: Context) : LinearLayout(context) {
     }
 
     private fun initListeners() {
-        options.setOnCheckedChangeListener { radioGroup: RadioGroup, i: Int ->
+        options.setOnCheckedChangeListener { _: RadioGroup, i: Int ->
             if (i == correctOptionID) {
                 optionsClickListener.onClicked(true)
             } else {
@@ -94,8 +91,9 @@ class QuizView(context: Context) : LinearLayout(context) {
 
         }
     }
-     fun reset(){
+
+    fun reset() {
         options.removeAllViews()
-         this.removeAllViews()
+        this.removeAllViews()
     }
 }

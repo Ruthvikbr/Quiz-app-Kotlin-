@@ -21,5 +21,8 @@ interface StateDao {
     fun getAllStates(): DataSource.Factory<Int, State>
 
     @Query("SELECT * FROM State ORDER BY RANDOM() LIMIT 4")
-    fun getQuizStates(): List<State>
+     fun getQuizStates(): List<State>
+
+    @Query("SELECT * FROM State ORDER BY RANDOM() LIMIT 1")
+    fun getRandomState(): State
 }
