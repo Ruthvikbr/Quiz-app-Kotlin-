@@ -8,7 +8,7 @@ import com.ruthvikbr.quizapp_kotlin.database.StateRepository
 import java.util.concurrent.ExecutionException
 
 class QuizViewModel(application: Application) : AndroidViewModel(application) {
-    private val states: MutableLiveData<List<State>> = MutableLiveData<List<State>>()
+     val states: MutableLiveData<List<State>> = MutableLiveData<List<State>>()
     private val stateRepository: StateRepository = StateRepository.getRepository(application)!!
 
     init {
