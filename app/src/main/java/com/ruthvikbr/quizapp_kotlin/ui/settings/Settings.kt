@@ -24,8 +24,8 @@ class Settings : PreferenceFragmentCompat() {
                 val current: Long = System.currentTimeMillis()
 
                 val calendar = Calendar.getInstance()
-                calendar.set(Calendar.HOUR_OF_DAY, 16)
-                calendar.set(Calendar.MINUTE, 30)
+                calendar.set(Calendar.HOUR_OF_DAY, 19)
+                calendar.set(Calendar.MINUTE, 15)
 
                 if (calendar.timeInMillis < current) {
                     calendar.add(Calendar.DAY_OF_MONTH, 1)

@@ -9,4 +9,12 @@
         android:summary="Turn on to receive daily notifications"
         />
 
+    <ListPreference
+        android:defaultValue="StateName"
+        android:entries="@array/sorting_methods_names"
+        android:entryValues="@array/sorting_methods_values"
+        android:title="Sort By"
+        android:key="Sort_Preference"
+        />
+
 </PreferenceScreen>

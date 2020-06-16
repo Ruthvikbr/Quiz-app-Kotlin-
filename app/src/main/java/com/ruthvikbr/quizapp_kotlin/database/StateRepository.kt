@@ -6,6 +6,8 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import androidx.sqlite.db.SimpleSQLiteQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.ruthvikbr.quizapp_kotlin.data.State
 import kotlinx.coroutines.*
 import java.util.concurrent.Callable
@@ -71,6 +73,16 @@ class StateRepository(application: Application) {
     @WorkerThread
     fun getRandomState():State{
         return stateDao.getRandomState()
+    }
+
+    fun getStatesInSortedOrder(sortOrder:String): LiveData<PagedList<State>> {
+        val pageSize = 15
+        return LivePagedListBuilder(stateDao.getStatesInSortedOrder(constructQuery(sortOrder)), pageSize).build()
+    }
+
+    private fun constructQuery(sortBy:String):SupportSQLiteQuery{
+        val s = "SELECT * FROM State ORDER BY $sortBy ASC"
+        return SimpleSQLiteQuery(s)
     }
 
 

@@ -1,12 +1,14 @@
 package com.ruthvikbr.quizapp_kotlin.ui.stateList
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -29,7 +31,7 @@ class ListActivity : AppCompatActivity() {
     private val extraDataCapitalName : String = "capital_name"
     private val extraDataStateId : String = "state_id"
 
-
+    private lateinit var sortPreference:SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,12 @@ class ListActivity : AppCompatActivity() {
         }
 
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+        sortPreference = PreferenceManager.getDefaultSharedPreferences(this)
+        val s: String? = sortPreference.getString("Sort_Preference","StateID")
+        if (s != null) {
+            viewModel.changeSortOrder(s)
+        }
+        sortPreference.registerOnSharedPreferenceChangeListener(listener)
 
         val recyclerView:RecyclerView = findViewById(R.id.stateList)
 
@@ -51,6 +59,8 @@ class ListActivity : AppCompatActivity() {
         viewModel.stateList.observe(this, Observer {
             listPagingAdapter.submitList(it)
         })
+
+
 
         val clickListener:ListPagingAdapter.ClickListener = object : ListPagingAdapter.ClickListener{
             override fun onItemClick(view: View, position: Int) {
@@ -85,7 +95,6 @@ class ListActivity : AppCompatActivity() {
         })
 
         itemTouchHelper.attachToRecyclerView(recyclerView)
-
         listPagingAdapter.setItemClickListener(clickListener)
 
     }
@@ -98,5 +107,18 @@ class ListActivity : AppCompatActivity() {
         intent.putExtra(extraDataStateId,state.StateID)
         startActivityForResult(intent,updateActivityCode)
 
+    }
+    private val listener:SharedPreferences.OnSharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key == "Sort_Preference"){
+            val s: String? = sortPreference.getString(key,"StateID")
+            if (s != null) {
+                viewModel.changeSortOrder(s)
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        sortPreference.unregisterOnSharedPreferenceChangeListener(listener)
     }
 }

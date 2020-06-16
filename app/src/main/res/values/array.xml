@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="sorting_methods_names">
+        <item>State Name</item>
+        <item>State ID</item>
+        <item>State Capital</item>
+    </array>
+
+    <array name="sorting_methods_values">
+        <item>stateName</item>
+        <item>StateID</item>
+        <item>capitalName</item>
+    </array>
+</resources>
